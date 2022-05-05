@@ -12,4 +12,5 @@ import lombok.NoArgsConstructor;
 public class SatelliteReply {
     private String distance;
     private String message;
+    private String coordinates;
 }
