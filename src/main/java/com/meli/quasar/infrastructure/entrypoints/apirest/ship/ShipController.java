@@ -3,6 +3,7 @@ package com.meli.quasar.infrastructure.entrypoints.apirest.ship;
 import com.meli.quasar.domain.model.Position;
 import com.meli.quasar.domain.model.Satellite;
 import com.meli.quasar.domain.usercase.ShipSpaceUseCase;
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -29,6 +30,7 @@ public class ShipController {
     @Autowired
     private ShipSpaceUseCase shipSpaceUseCase;
 
+    @Operation(summary = "obtener l a ubicación de la nave y el mensaje que emite")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "obtener l a ubicación de la nave y el mensaje que emite",
                     content = { @Content(mediaType = "application/json",
@@ -54,6 +56,7 @@ public class ShipController {
         }
     }
 
+    @Operation(summary = "obtener la distancia del satelite y el mensaje que emite")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "obtener la distancia del satelite y el mensaje que emite",
                     content = { @Content(mediaType = "application/json",
@@ -76,6 +79,7 @@ public class ShipController {
         }
     }
 
+    @Operation(summary = "obtener la posición del satelite y el mensaje que emite")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "obtener la posición del satelite y el mensaje que emite",
                     content = { @Content(mediaType = "application/json",
