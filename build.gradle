@@ -1,11 +1,11 @@
 plugins {
-	id 'org.springframework.boot' version '2.6.7'
+	id 'org.springframework.boot' version '2.5.2'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
 	id 'java'
 }
 
 group = 'com.meli'
-version = '0.0.1-SNAPSHOT'
+version = '1.0'
 sourceCompatibility = '11'
 
 configurations {
@@ -24,6 +24,8 @@ dependencies {
 	implementation 'org.reactivecommons:async-commons-rabbit-starter:1.0.4'
 	implementation 'org.reactivecommons:async-commons-starter:1.0.0-beta3'
 	implementation 'io.projectreactor:reactor-core:3.4.17'
+
+	implementation 'org.springdoc:springdoc-openapi-ui:1.6.8'
 
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'

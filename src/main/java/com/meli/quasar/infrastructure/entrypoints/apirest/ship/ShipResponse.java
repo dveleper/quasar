@@ -1,5 +1,6 @@
-package com.meli.quasar.infrastructure.driven_adapters.event_emit.satellite;
+package com.meli.quasar.infrastructure.entrypoints.apirest.ship;
 
+import com.meli.quasar.domain.model.Position;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -9,8 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class SatelliteReply {
-    private String distance;
+public class ShipResponse {
+    private Position position;
     private String message;
-    private String coordinates;
 }

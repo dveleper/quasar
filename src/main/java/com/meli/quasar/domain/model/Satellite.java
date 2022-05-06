@@ -1,14 +1,48 @@
 package com.meli.quasar.domain.model;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
-import lombok.experimental.SuperBuilder;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@AllArgsConstructor
 @NoArgsConstructor
-@SuperBuilder
-public class Satellite extends ObjectSpace {
-    private String message;
+@Builder(toBuilder = true)
+public class Satellite {
+    private String name;
+    private double distance;
+    private String[] message;
+    private Position position;
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
+    public String[] getMessage() {
+        return message;
+    }
+
+    public void setMessage(String[] message) {
+        this.message = message;
+    }
+
+    public Position getPosition() {
+        return position;
+    }
+
+    public void setPosition(Position position) {
+        this.position = position;
+    }
 }
+

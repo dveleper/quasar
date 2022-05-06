@@ -10,4 +10,9 @@ import lombok.Data;
 public class Position {
     private float x;
     private float y;
+
+    @Override
+    public String toString() {
+        return x + ", " + y;
+    }
 }

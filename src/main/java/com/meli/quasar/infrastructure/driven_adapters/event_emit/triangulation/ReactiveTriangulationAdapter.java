@@ -19,6 +19,12 @@ public class ReactiveTriangulationAdapter implements TriangulationRepository {
     @Autowired
     private ReactiveTriangulationRepository triangulationRepository;
 
+    /**
+     * metodo para obtener las coordenadas de la nave a traves del evento del micro de triangulacion (meteoro)
+     * @param positions
+     * @param distances
+     * @return coordenadas de la nave
+     */
     @Override
     public Satellite getShip(List<Position> positions, List<Double> distances) {
         TriangulationQuery query = TriangulationQuery.builder()
