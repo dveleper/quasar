@@ -5,7 +5,6 @@ import com.meli.quasar.domain.model.Satellite;
 import com.meli.quasar.domain.model.repository.SatelliteRepository;
 import com.meli.quasar.infrastructure.driven_adapters.event_emit.triangulation.ReactiveTriangulationAdapter;
 import com.meli.quasar.infrastructure.entry_points.api_rest.exception.LocationException;
-import com.meli.quasar.infrastructure.entry_points.api_rest.exception.MessageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -26,10 +25,7 @@ public class ShipSpaceUseCaseImpl implements ShipSpaceUseCase {
     private ReactiveTriangulationAdapter triangulationAdapter;
 
     @Override
-    public float[] getLocation(float[] distances) throws LocationException {
-        if (distances.length < 3) {
-            throw new LocationException("No existe la cantidad mínima de posiciones y/o distancias necesarias");
-        }
+    public float[] getLocation(float[] distances) {
         List<Position> positions = getPositionList();
         List<Double> distancesDouble = getDistancesDouble(distances);
 
@@ -79,11 +75,7 @@ public class ShipSpaceUseCaseImpl implements ShipSpaceUseCase {
     }
 
     @Override
-    public String[] getMessage(List<String[]> listMessages) throws MessageException {
-        if (listMessages.size() < 3) {
-            throw new MessageException("No existe la cantidad mínima de mensajes necesarios");
-        }
-
+    public String[] getMessage(List<String[]> listMessages) {
         String[][] matrixMessages = fillMatrixMessages(new String[3][5], listMessages);
         String[] messageFinal = getMessageFinal(matrixMessages);
 

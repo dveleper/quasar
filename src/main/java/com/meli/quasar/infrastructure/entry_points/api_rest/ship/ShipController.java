@@ -42,39 +42,41 @@ public class ShipController {
             } else {
                 return new ResponseEntity(HttpStatus.NOT_FOUND);
             }
-        }catch (MessageException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
-        }catch (LocationException e){
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, e.getMessage(), e);
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
-
-
     }
 
     @PostMapping("topsecret_split/{satellite_name}")
     public ResponseEntity<ShipNamePostResponse> getTopSecretSplitPost(@PathVariable String satellite_name) {
-        return Optional.of(shipSpaceUseCase.getSatelliteEvent(satellite_name)).map(
-                satellite -> {
-                    return new ResponseEntity<>(
-                            ShipNamePostResponse.builder()
-                                    .distance(satellite.getDistance())
-                                    .message(Arrays.toString(satellite.getMessage()))
-                                    .build(), HttpStatus.OK);
-                }).orElse(new ResponseEntity<>(ShipNamePostResponse.builder().build(), HttpStatus.NOT_FOUND));
-
+        try {
+            return Optional.of(shipSpaceUseCase.getSatelliteEvent(satellite_name)).map(
+                    satellite -> {
+                        return new ResponseEntity<>(
+                                ShipNamePostResponse.builder()
+                                        .distance(satellite.getDistance())
+                                        .message(Arrays.toString(satellite.getMessage()))
+                                        .build(), HttpStatus.OK);
+                    }).orElse(new ResponseEntity<>(ShipNamePostResponse.builder().build(), HttpStatus.NOT_FOUND));
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     @GetMapping("topsecret_split/{satellite_name}")
     public ResponseEntity<ShipNameGetResponse> getTopSecretSplitGet(@PathVariable String satellite_name) {
-        return Optional.of(shipSpaceUseCase.getSatelliteEvent(satellite_name)).map(
-                satellite -> {
-                    return new ResponseEntity<>(
-                            ShipNameGetResponse.builder()
-                                    .position(satellite.getPosition())
-                                    .message(Arrays.toString(satellite.getMessage()))
-                                    .build(), HttpStatus.OK);
-                }).orElse(new ResponseEntity<>(ShipNameGetResponse.builder().build(), HttpStatus.NOT_FOUND));
-
+        try {
+            return Optional.of(shipSpaceUseCase.getSatelliteEvent(satellite_name)).map(
+                    satellite -> {
+                        return new ResponseEntity<>(
+                                ShipNameGetResponse.builder()
+                                        .position(satellite.getPosition())
+                                        .message(Arrays.toString(satellite.getMessage()))
+                                        .build(), HttpStatus.OK);
+                    }).orElse(new ResponseEntity<>(ShipNameGetResponse.builder().build(), HttpStatus.NOT_FOUND));
+        } catch (Exception e) {
+            return new ResponseEntity(HttpStatus.NOT_FOUND);
+        }
     }
 
     private List<String[]> getMessagesSatellites(List<Satellite> satellites) {
