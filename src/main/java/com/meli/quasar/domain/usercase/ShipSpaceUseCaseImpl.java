@@ -4,6 +4,8 @@ import com.meli.quasar.domain.model.Position;
 import com.meli.quasar.domain.model.Satellite;
 import com.meli.quasar.domain.model.repository.SatelliteRepository;
 import com.meli.quasar.infrastructure.driven_adapters.event_emit.triangulation.ReactiveTriangulationAdapter;
+import com.meli.quasar.infrastructure.entry_points.api_rest.exception.LocationException;
+import com.meli.quasar.infrastructure.entry_points.api_rest.exception.MessageException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
@@ -24,8 +26,10 @@ public class ShipSpaceUseCaseImpl implements ShipSpaceUseCase {
     private ReactiveTriangulationAdapter triangulationAdapter;
 
     @Override
-    public float[] getLocation(float[] distances) {
-
+    public float[] getLocation(float[] distances) throws LocationException {
+        if (distances.length < 3) {
+            throw new LocationException("No existe la cantidad mínima de posiciones y/o distancias necesarias");
+        }
         List<Position> positions = getPositionList();
         List<Double> distancesDouble = getDistancesDouble(distances);
 
@@ -75,12 +79,38 @@ public class ShipSpaceUseCaseImpl implements ShipSpaceUseCase {
     }
 
     @Override
-    public String[] getMessage(String[] messages) {
-        // TODO: procesar la lista de mensajes para retornar un unico mensaje completo
-        String [] message = new String[2];
-        message[0] = "Mensaje de prueba ";
-        message[1] = "sin procesamiento";
-        return message;
+    public String[] getMessage(List<String[]> listMessages) throws MessageException {
+        if (listMessages.size() < 3) {
+            throw new MessageException("No existe la cantidad mínima de mensajes necesarios");
+        }
+
+        String[][] matrixMessages = fillMatrixMessages(new String[3][5], listMessages);
+        String[] messageFinal = getMessageFinal(matrixMessages);
+
+        return messageFinal;
+    }
+
+    public static String[][] fillMatrixMessages(String[][] matrix, List<String[]> arrayToAddMatrix) {
+        for (int i = 0; i < arrayToAddMatrix.size(); i++) {
+            for (int j = 0; j < 5; j++) {
+                matrix[i][j] = arrayToAddMatrix.get(i)[j];
+            }
+        }
+        return matrix;
+    }
+
+    public static String[] getMessageFinal(String[][] matrixMessages) {
+        String[] messageFinal = new String[5];
+        for (int i = 0; i < 3; i++) {
+            for (int j = 0; j < 5; j++) {
+                String word = matrixMessages[i][j];
+                if (!word.equals("")){
+                    messageFinal[j] = word;
+                    continue;
+                }
+            }
+        }
+        return messageFinal;
     }
 
 }

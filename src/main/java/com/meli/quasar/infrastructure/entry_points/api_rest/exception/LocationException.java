@@ -1,4 +1,4 @@
-package com.rebell.alliance.intelligence.exceptions;
+package com.meli.quasar.infrastructure.entry_points.api_rest.exception;
 
 public class LocationException extends Exception{
 
