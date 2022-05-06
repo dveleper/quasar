@@ -12,5 +12,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class ShipResponse {
     private Position position;
-    private String[] message;
+    private String message;
 }
