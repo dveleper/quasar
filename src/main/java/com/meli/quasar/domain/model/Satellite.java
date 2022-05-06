@@ -8,33 +8,33 @@ import lombok.Builder;
 @NoArgsConstructor
 @Builder(toBuilder = true)
 public class Satellite {
-    private String nombre;
-    private double distancia;
-    private String[] mensaje;
+    private String name;
+    private double distance;
+    private String[] message;
     private Position position;
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public double getDistancia() {
-        return distancia;
+    public double getDistance() {
+        return distance;
     }
 
-    public void setDistancia(double distancia) {
-        this.distancia = distancia;
+    public void setDistance(double distance) {
+        this.distance = distance;
     }
 
-    public String[] getMensaje() {
-        return mensaje;
+    public String[] getMessage() {
+        return message;
     }
 
-    public void setMensaje(String[] mensaje) {
-        this.mensaje = mensaje;
+    public void setMessage(String[] message) {
+        this.message = message;
     }
 
     public Position getPosition() {

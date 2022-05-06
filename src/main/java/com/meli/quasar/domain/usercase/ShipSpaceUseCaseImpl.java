@@ -11,6 +11,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static com.meli.quasar.utils.Constants.TARGET_KENOBI;
+import static com.meli.quasar.utils.Constants.TARGET_SATO;
+import static com.meli.quasar.utils.Constants.TARGET_SKYWALKER;
 
 @Service
 public class ShipSpaceUseCaseImpl implements ShipSpaceUseCase {
@@ -62,14 +64,13 @@ public class ShipSpaceUseCaseImpl implements ShipSpaceUseCase {
     private Satellite[] getSatellitesPosition() {
         Satellite[] satellites = new Satellite[3];
         satellites[0] = getSatelliteEvent(TARGET_KENOBI);
-        satellites[1] = satellites[0]; // *** por ahora para debug
-        satellites[2] = satellites[0]; // *** por ahora para debug
-        //satellites[1] = getSatelliteEvent(TARGET_SKYWALKER);
-        //satellites[2] = getSatelliteEvent(TARGET_SATO);
+        satellites[1] = getSatelliteEvent(TARGET_SKYWALKER);
+        satellites[2] = getSatelliteEvent(TARGET_SATO);
         return satellites;
     }
 
-    private Satellite getSatelliteEvent(String name) {
+    @Override
+    public Satellite getSatelliteEvent(String name) {
         return satelliteRepository.getSatelliteNyName(name);
     }
 

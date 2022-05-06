@@ -23,8 +23,8 @@ public class ReactiveSatelliteAdapter implements SatelliteRepository {
         SatelliteReply satelliteReply = reactiveSatelliteRepository.getLocationMeteorEvent(SatelliteQuery.builder().name(name).build()).block();
         String[] coordinates = satelliteReply.getCoordinates().split(",");
         return Satellite.builder()
-                .distancia(Double.parseDouble(satelliteReply.getDistance()))
-                .mensaje(satelliteReply.getMessage().split(","))
+                .distance(Double.parseDouble(satelliteReply.getDistance()))
+                .message(satelliteReply.getMessage().split(","))
                 .position(Position.builder()
                         .x(Float.parseFloat(coordinates[0]))
                         .y(Float.parseFloat(coordinates[1]))
