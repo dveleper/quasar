@@ -1,4 +1,4 @@
-package com.meli.quasar.infrastructure.entry_points.api_rest.ship;
+package com.meli.quasar.infrastructure.entrypoints.apirest.ship;
 
 import com.meli.quasar.domain.model.Satellite;
 import lombok.Data;

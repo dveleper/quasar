@@ -1,4 +1,4 @@
-package com.meli.quasar.infrastructure.entry_points.api_rest.exception;
+package com.meli.quasar.infrastructure.entrypoints.apirest.exception;
 
 public class LocationException extends Exception{
 

@@ -1,4 +1,4 @@
-package com.meli.quasar.infrastructure.entry_points.api_rest.ship;
+package com.meli.quasar.infrastructure.entrypoints.apirest.ship;
 
 import com.meli.quasar.domain.model.Position;
 import lombok.AllArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @Builder(toBuilder = true)
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShipNamePostResponse {
-    private double distance;
+public class ShipResponse {
+    private Position position;
     private String message;
 }

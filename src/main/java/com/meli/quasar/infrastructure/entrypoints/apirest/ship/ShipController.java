@@ -1,10 +1,12 @@
-package com.meli.quasar.infrastructure.entry_points.api_rest.ship;
+package com.meli.quasar.infrastructure.entrypoints.apirest.ship;
 
 import com.meli.quasar.domain.model.Position;
 import com.meli.quasar.domain.model.Satellite;
 import com.meli.quasar.domain.usercase.ShipSpaceUseCase;
-import com.meli.quasar.infrastructure.entry_points.api_rest.exception.LocationException;
-import com.meli.quasar.infrastructure.entry_points.api_rest.exception.MessageException;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.RequestEntity;
@@ -14,7 +16,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -28,6 +29,12 @@ public class ShipController {
     @Autowired
     private ShipSpaceUseCase shipSpaceUseCase;
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "obtener l a ubicación de la nave y el mensaje que emite",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ShipResponse.class)) }),
+            @ApiResponse(responseCode = "404", description = "no se pueda determinar la posición o el mensaje",
+                    content = @Content)})
     @PostMapping("/topsecret")
     public ResponseEntity<ShipResponse> getTopSecret(RequestEntity<ShipRequest> request) {
         try {
@@ -47,6 +54,12 @@ public class ShipController {
         }
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "obtener la distancia del satelite y el mensaje que emite",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ShipNamePostResponse.class)) }),
+            @ApiResponse(responseCode = "404", description = "No hay suficiente información",
+                    content = @Content)})
     @PostMapping("topsecret_split/{satellite_name}")
     public ResponseEntity<ShipNamePostResponse> getTopSecretSplitPost(@PathVariable String satellite_name) {
         try {
@@ -63,6 +76,12 @@ public class ShipController {
         }
     }
 
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "obtener la posición del satelite y el mensaje que emite",
+                    content = { @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ShipNameGetResponse.class)) }),
+            @ApiResponse(responseCode = "404", description = "No hay suficiente información",
+                    content = @Content)})
     @GetMapping("topsecret_split/{satellite_name}")
     public ResponseEntity<ShipNameGetResponse> getTopSecretSplitGet(@PathVariable String satellite_name) {
         try {

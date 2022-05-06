@@ -4,7 +4,6 @@ import com.meli.quasar.domain.model.Position;
 import com.meli.quasar.domain.model.Satellite;
 import com.meli.quasar.domain.model.repository.SatelliteRepository;
 import com.meli.quasar.infrastructure.driven_adapters.event_emit.triangulation.ReactiveTriangulationAdapter;
-import com.meli.quasar.infrastructure.entry_points.api_rest.exception.LocationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
