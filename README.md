@@ -54,8 +54,8 @@ Meteoro:
 http://localhost:8099/meteoro/api/swagger-ui/index.html
 ![img_9.png](img_9.png)
 
-En la siguiente ruta se puede encontrar una colección de peticiones para postman:
-![img_13.png](img_13.png)
+En la siguiente ruta dentro del proyecto quasar se puede encontrar una colección de peticiones para postman:
+src/main/resources/postman/MELI-QUASAR.postman_collection.json
 
 ##Puertos por defecto al subir los micros:
 | Microservicio            | Puerto    |
